@@ -10,6 +10,7 @@ org.mozilla.firefox,*
 org.mozilla.aurora,*
 de.icab.iCab,*
 com.apple.mail,*
+it.bloop.airmail,*
 com.sparrowmailapp.sparrow,*
 com.postbox-inc.postbox,*
 com.tapbots.TweetbotMac,*
