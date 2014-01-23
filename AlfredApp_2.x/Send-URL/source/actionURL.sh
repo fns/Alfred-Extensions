@@ -47,6 +47,34 @@ END
             # Insert the URL into a new mail in Sparrow as a html link
             osascript -e "tell application \"Sparrow\" to compose (make new outgoing message with properties {htmlContent:\"<br /><a href=\\\"$THEURL\\\">$THEURL</a>\"})" -e "tell application \"Sparrow\" to activate"
             ;;
+       com.sparrowmailapp.sparrow )
+            # Insert the URL into a new mail in Sparrow as a html link
+            osascript -e "tell application \"Sparrow\" to compose (make new outgoing message with properties {htmlContent:\"<br /><a href=\\\"$THEURL\\\">$THEURL</a>\"})" -e "tell application \"Sparrow\" to activate"
+            ;;
+        it.bloop.airmail )
+            # Insert the URL into a new mail in Airmail as a html link
+            osascript<<END
+
+                tell application "Safari"
+                    set theName to name of front document
+                    set theURL to URL of front document
+                end tell
+
+                tell application "Airmail"
+                    activate
+                    set theMessage to make new outgoing message with properties {subject:"$THEURL", htmlContent:"$THEURL"}
+                    tell theMessage to compose
+                end tell
+
+                tell application "System Events"
+                    delay 0.2
+                    keystroke tab using shift down
+                    keystroke tab using shift down
+                    keystroke tab using shift down
+                    keystroke tab using shift down
+                end tell
+END
+            ;;
         com.apple.mail )
             # Insert the URL into a new mail in Mail as text
             osascript -e "tell application \"Mail\" to (make new outgoing message with properties {visible:true, content:return & \"$THEURL\" & return & return})" -e "tell application \"Mail\" to activate"
